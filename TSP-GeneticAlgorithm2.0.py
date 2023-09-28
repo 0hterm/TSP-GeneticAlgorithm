@@ -220,5 +220,6 @@ for i in range(0, numCities):
     cityList.append(City(x=int(random.random() * 200), y=int(random.random() * 200)))
 
 finalroute = geneticAlgorithm(population=cityList, popSize=populationSize, eliteSize=elitePop, mutationRate=0.01, generations = genSize, stagnation = stagnation)
+print('Best sequence of cities:')
 print(finalroute)
 # geneticAlgorithmPlot(population=cityList, popSize=100, eliteSize=20, mutationRate=0.01, generations = 500)
