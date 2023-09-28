@@ -166,7 +166,7 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations, 
                 print('Generation with best distance: {}'.format(bestGen))
                 bestRouteIndex = rankRoutes(pop)[0][0]
                 bestRoute = pop[bestRouteIndex]
-                return bestRoute
+                return bestRoute, progress
             
             print('Generation {}| Minimum Distance: {}'.format(genCounter, 1 / rankRoutes(pop)[0][1]))
             currentBest = 1 / rankRoutes(pop)[0][1]
@@ -188,11 +188,8 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations, 
         print('Generation with best distance: {}'.format(bestGen))
         bestRouteIndex = rankRoutes(pop)[0][0]
         bestRoute = pop[bestRouteIndex]
-        plt.plot(progress)
-        plt.ylabel('Distance')
-        plt.xlabel('Generation')
-        plt.show()
-        return bestRoute
+        
+        return bestRoute, progress
     
     else:
         for i in range(0, generations):
@@ -209,14 +206,10 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations, 
         print('Generation with best distance: {}'.format(bestGen))
         bestRouteIndex = rankRoutes(pop)[0][0]
         bestRoute = pop[bestRouteIndex]
-        plt.plot(progress)
-        plt.ylabel('Distance')
-        plt.xlabel('Generation')
-        plt.show()
-        return bestRoute
+        
+        return bestRoute, progress
 
 cityList = []
-cityIndices = []
 
 numCities = int(input('Enter the integer number of cities you would like your salesman to travel to: '))
 populationSize = int(input('Enter the integer number of the population size (higher population means longer runtime): '))
@@ -238,14 +231,19 @@ else:
 for i in range(0, numCities):
     cityPoint = City(x=int(random.random() * 200), y=int(random.random() * 200))
     cityList.append(cityPoint)
-    cityIndices.append(i)
+    
 
 
-bestRouteIndices = geneticAlgorithm(population=cityList, popSize=populationSize, eliteSize=elitePop, mutationRate=mutationRate, generations = genSize, stagnation = stagnation, stagnationThresh = stagnationThresh)
+bestRouteIndices, progress = geneticAlgorithm(population=cityList, popSize=populationSize, eliteSize=elitePop, mutationRate=mutationRate, generations = genSize, stagnation = stagnation, stagnationThresh = stagnationThresh)
 finalRouteIndices = [cityList.index(city)for city in bestRouteIndices]
 finalRouteCityNumbers = [i + 1 for i in finalRouteIndices]
 print('Best Sequence of cities:')
 for i, city_number in enumerate(finalRouteCityNumbers, start = 1):
     print("{}. {}".format(i, city_number))
+
+plt.plot(progress)
+plt.ylabel('Distance')
+plt.xlabel('Generation')
+plt.show()
     
 
