@@ -214,7 +214,7 @@ cityList = []
 numCities = int(input('Enter the integer number of cities you would like your salesman to travel to: '))
 populationSize = int(input('Enter the integer number of the population size (higher population means longer runtime): '))
 mutationRate = float(input('Enter float value mutation rate (0.01 will give best results): '))
-elitePop = int(input('Enter percent of new children in each generation (enter as a positive integer): '))
+elitePop = int(input('Enter positive integer number of new children in each generation: '))
 genSize = int(input('Enter the numbers of generations you would like to run: '))
 stagnation = str(input('Would you like to use stagnation as a stopping condition? (Y/N): '))
 
