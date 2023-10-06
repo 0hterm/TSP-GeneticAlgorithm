@@ -4,6 +4,12 @@ import operator
 import pandas as pd
 import matplotlib.pyplot as plt
 
+"""
+----------------OUT OF DATE--------------------
+THIS IS THE 1.0 VERSION OF THE SKELETON FOR THE
+FINAL PRODUCT.
+"""
+
 class City:
     def __init__(self,x,y):
         self.x = float(x)
